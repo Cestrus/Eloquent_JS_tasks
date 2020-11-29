@@ -36,9 +36,14 @@ console.log('prepend => ', prepend({value: 0},  arrayToList([1, 2, 3])));
 
 
 const nth = (list, num, i = 0, obj= {}) => {
-	if(!list.rest) return obj;
-	else if(num === i) obj.value = list.value;
-	else nth(list.rest, num, i++);
+	if(!list.rest) {
+		return obj;
+	}	else if(num === i) {
+		for(let prop in list){
+			obj[prop] = list[prop];
+		}
+	}
+	else nth(list.rest, num, ++i, obj);
 	return obj;
 }
 
